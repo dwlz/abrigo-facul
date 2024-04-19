@@ -2,17 +2,22 @@
     margin: 0;
     box-sizing: border-box;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
-body {
+html {
     width: 100%;
-    height: 100vh;
+    height: 150vh;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 main {
     width: 1500px;
     height: 100%;
-    border: 1px solid black;
     margin: 0 auto;
 }
 
@@ -24,7 +29,7 @@ main {
 .slider {
     margin: 0 auto;
     width: 1500px;
-    height: 800px;
+    height: 313px;
     overflow: hidden;
 }
 
@@ -114,5 +119,118 @@ main {
     background-color: #fff;
 }
 
+.titulo {
+    font-size: 66px;
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
 
+.titulo-box {
+    font-size: 40px;
+    color: #343a40;
+}
 
+.containers {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.box-text {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(26, 190, 190);
+    box-shadow: 1rem 1rem 1rem rgb(200, 200, 200);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    border-radius: 6px;
+}
+
+.box-text p {
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box-text .titulo-box::after {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1.5rem;
+    background-image: url(img/svg/pets-hotel-house-sign-with-a-paw-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: .5rem;
+}
+.box-text .titulo-box::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1.5rem;
+    background-image: url(img/svg/pets-hotel-house-sign-with-a-paw-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.box-content {
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(16, 185, 185);
+    border-radius: 2px;
+    width: 250px;
+    height: 250px;
+}
+
+.box-content p {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(229, 255, 0);
+
+}
+
+button {
+    font-weight: 500;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+
+}
+
+button:hover {
+    background-color: yellow;
+    transition: .5s;
+}
+
+.box-adote {
+    width: 100%;
+    height: 400px;
+    background-color: rgb(26, 190, 190);
+    box-shadow: 1rem 1rem 1rem rgb(200, 200, 200);
+}
+
+.box-titulo-adote {
+    padding: 50px 0 10px 40px;
+    font-size: 40px;
+    color: white;
+    font-weight: 600;
+    
+}
+
+.content-box {
+    margin-top: 50px;
+    margin-left: 100px;
+}
