@@ -21,6 +21,10 @@ main {
     margin: 0 auto;
 }
 
+nav {
+    margin-bottom: 20px;
+}
+
 .logo {
     width: 70px;
     height: 40px;
@@ -231,6 +235,13 @@ button:hover {
 }
 
 .content-box {
-    margin-top: 50px;
-    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+    font-size: 26px;
+    color: white;
+    font-weight: 500;
+    height: 330px;
 }
