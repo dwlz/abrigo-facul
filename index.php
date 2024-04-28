@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container">
                 <!-- Logo ou Nome da Marca -->
                 <a class="navbar-brand" href="#"><img class="logo" src="img/cachorro logo.png" alt="cachorro logo"></a>
@@ -28,16 +28,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Início</a>
+                            <a class="nav-link" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link" href="#sobre">Sobre</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Canil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Adote</a>
+                            <a class="nav-link" href="login.php">Adote</a>
                         </li>
                     </ul>
                 </div>
@@ -86,7 +86,7 @@
         <section>
             <h1 class="titulo">Sobre</h1>
             <hr>
-            <div class="containers">
+            <div id="sobre" class="containers">
                 <div class="box-text">
                     <p class="titulo-box">Adote</p>
                     <div class="box-content">
@@ -154,7 +154,7 @@
     </main>
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

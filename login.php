@@ -50,7 +50,7 @@
               <div class="col-md-6 col-sm-8 col-lg-4">
                 <div class="card">
                   <div class="card-header text-center">
-                    <h4>Registrar-se</h4>
+                    <h4>Login</h4>
                   </div>
                   <div class="card-body">
                     <form>
@@ -62,8 +62,8 @@
                         <label for="password">Senha</label>
                         <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
                       </div>
-                      <p><a style="font-size: 14px; display: flex; justify-content: end;" href="login.php">Logar</a></p>
-                      <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                      <p><a style="font-size: 14px; display: flex; justify-content: end;" href="registrar.php">Registrar</a></p>
+                      <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                     </form>
                   </div>
                 </div>
@@ -75,7 +75,7 @@
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <script src="/js/business_registrar.js"></script>
+    <script src="/js/business_login.js"></script>
 </body>
 
 </html>
