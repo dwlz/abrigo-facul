@@ -13,14 +13,12 @@
 
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container">
                 <!-- Logo ou Nome da Marca -->
                 <a class="navbar-brand" href="#"><img class="logo" src="img/cachorro logo.png" alt="cachorro logo"></a>
                 <!-- Botão de Colapso (para dispositivos móveis) -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -47,35 +45,56 @@
     <main>
         <div class="container">
             <div class="row justify-content-center login-container">
-              <div class="col-md-6 col-sm-8 col-lg-4">
-                <div class="card">
-                  <div class="card-header text-center">
-                    <h4>Registrar-se</h4>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="username">Usuário</label>
-                        <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
-                      </div>
-                      <div class="form-group">
-                        <label for="password">Senha</label>
-                        <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-                      </div>
-                      <p><a style="font-size: 14px; display: flex; justify-content: end;" href="login.php">Logar</a></p>
-                      <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-                    </form>
-                  </div>
+                <div class="col-md-6 col-sm-8 col-lg-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4>Registrar-se</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="javascript:gravar()">
+                                <div class="form-group">
+                                    <label for="username">Usuário</label>
+                                    <input id="codigo" name="codigo" type="number" value="" hidden>
+                                    <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Senha</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                                </div>
+                                <p><a style="font-size: 14px; display: flex; justify-content: end;" href="login.php">Logar</a></p>
+                                <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-    
+        </div>
+
     </main>
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <script src="/js/business_registrar.js"></script>
+
+    <script language="JavaScript" type="text/javascript">
+        $(document).ready(function() {
+
+        $("#btnRegister").on("click", function() {
+                gravar();
+        });
+
+    function gravar() {
+        let form = $("#formCentroCusto")[0];
+        let formData = new FormData(form);
+            gravaUsuario(formData, function(data) {
+            //Verifica se a função de gravar os campos foi executada corretamente
+            smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+        });
+}
+
+        });
+    </script>
+
 </body>
 
 </html>
