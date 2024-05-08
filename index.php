@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Adote</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -91,7 +94,7 @@
                     <p class="titulo-box">Adote</p>
                     <div class="box-content">
                         <p>Agora você pode adotar seu animalzinho da sua casa!!</p>
-                        <button>Entenda Mais!</button>
+                        <button class="button">Entenda Mais!</button>
                     </div>
 
                 </div>
@@ -99,14 +102,14 @@
                     <p class="titulo-box">Vacinas</p>
                     <div class="box-content">
                         <p>As Vacinas são muito importante para seu pet!!</p>
-                        <button>Entenda Mais!</button>
+                        <button class="button">Entenda Mais!</button>
                     </div>
                 </div>
                 <div class="box-text">
                     <p class="titulo-box">Cuidados</p>
                     <div class="box-content">
                         <p>Você sabe os cuidados que precisa ter com seus pets?</p>
-                        <button>Entenda Mais!</button>
+                        <button class="button">Entenda Mais!</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +123,7 @@
                         animal de estimação, você não apenas ganha um amigo leal, mas também salva uma vida. 
                         Milhares de pets esperam ansiosamente por 
                         um lar amoroso. Seja a mudança que eles precisam. Adote hoje e faça a diferença!</p>
-                        <button style="width: 50%; margin: 0 auto;">Clique aqui</button>
+                        <button class="button" style="width: 50%; margin: 0 auto;">Clique aqui</button>
                 </div>
             </div>
         </section>
@@ -133,7 +136,7 @@
                         Assim como nós, nossos amigos peludos também precisam de proteção contra doenças. 
                         As vacinas são a chave para garantir uma vida longa e saudável para seus companheiros de quatro patas. 
                         Não deixe a saúde do seu pet ao acaso. Vacine hoje e garanta um futuro cheio de amor e bem-estar</p>
-                    <button style="width: 50%; margin: 0 auto;">Clique aqui</button>
+                    <button class="button" style="width: 50%; margin: 0 auto;">Clique aqui</button>
                 </div>
             </div>
         </section>

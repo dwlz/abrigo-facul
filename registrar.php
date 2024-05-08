@@ -29,13 +29,16 @@
                             <a class="nav-link" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link" href="index.php">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Canil</a>
+                            <a class="nav-link" href="index.php">Canil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Adote</a>
+                            <a class="nav-link" href="adote.php">Adote</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
                         </li>
                     </ul>
                 </div>
@@ -44,31 +47,29 @@
     </header>
     <main>
         <div class="container">
-            <div class="row justify-content-center login-container">
-                <div class="col-md-6 col-sm-8 col-lg-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <h4>Registrar-se</h4>
-                        </div>
-                        <div class="card-body">
-                            <form id="cadastro" action="javascript:gravar()">
-                                <div class="form-group">
-                                    <label for="usuario">Usuário</label>
-                                    <input id="codigo" name="codigo" type="number" value="" hidden>
-                                    <input type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
-                                </div>
-                                <div class="form-group">
-                                    <label for="senha">Senha</label>
-                                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-                                </div>
-                                <p><a style="font-size: 14px; display: flex; justify-content: end;" href="login.php">Logar</a></p>
-                                <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Registrar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php
+            include("config.php");
+            switch (@$_REQUEST["page"]) {
+                case "logar":
+                    include("login.php");
+                    break;
+                case "registrar":
+                    include("novo-usuario.php");
+                    break;
+                    case "salvar":
+                        include("salvar-usuario.php");
+                        break;
+                    case "listar":
+                        include("listar-usuario.php");
+                        break;
+                    case "editar":
+                        include("editar-usuario.php");
+                        break;
+                default:
+            }
+                    
+            ?>
+            
 
     </main>
     <footer></footer>
@@ -82,10 +83,11 @@
                 gravar();
             });
 
-            
-            
+
+
         });
-        function gravar() {
+
+/*         function gravar() {
             let form = $("#cadastro")[0];
             let formData = new FormData(form);
             console.log(formdata)
@@ -105,8 +107,8 @@
                 contentType: false,
                 success: results => callback(results)
             })
-        }
-        </script>
+        } */
+    </script>
 
 </body>
 
