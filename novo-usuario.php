@@ -1,7 +1,7 @@
 <h1 class="center col-auto mb-4">Novo Usuário</h1>
 
 <form class="" action="?page=salvar" method="POST">
-    <input type="hidden" name="acao" value="">
+    <input type="hidden" name="acao" value="salvar">
     <div class="col col-4 col-auto mb-3">
         <label for="Nome">Nome</label>
         <input type="text" name="nome" class="form-control">

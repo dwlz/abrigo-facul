@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registrar.php?page=listar">Listagem</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -157,7 +160,7 @@
     </main>
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -37,6 +37,19 @@
             print "<script>location.href='registrar.php?page=listar';</script>";
         }
     }
+    if($acao == 'excluir') {
+        $codigo = $_REQUEST['codigo'];
+
+        $sql = "DELETE FROM usuario WHERE codigo = $codigo";
+        $res = $conn->query($sql);
+        if($res == false) {
+            print "<script>alert('Não foi possivel excluir!');</script>";
+            print "<script>location.href='registrar.php?page=listar';</script>";
+        } else {
+            print "<script>alert('Excluido com Sucesso!');</script>";
+            print "<script>location.href='registrar.php?page=listar';</script>";
+        }
+    }
   /*   switch ($_REQUEST['acao']) {
         case 'salvar':
             $nome = $_POST["nome"];

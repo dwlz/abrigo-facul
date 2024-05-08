@@ -23,7 +23,7 @@
             print "<td>".$row->senha."</td>";  
             print "<td> 
                     <button class='btn btn-success' onclick=\"location.href='?page=editar&id=".$row->codigo."';\">Editar</button>
-                    <button class='btn btn-danger'>Excluir</button>
+                    <button class='btn btn-danger'onclick=\"if(confirm('Tem certeza que deseja excluir?')){location.href='?page=salvar&acao=excluir&codigo=".$row->codigo."';}else{false;}\">Excluir</button>
                    </td>";  
 
             print '</tr>';

@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registrar.php?page=listar">Listagem</a>
+                        </li>
                     </ul>
                 </div>
             </div>
