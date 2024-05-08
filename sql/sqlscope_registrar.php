@@ -1,4 +1,5 @@
-<?php 
+<?php
+include "config.php";
 include "repositorio.php";
 
 // chama as funções 
@@ -9,14 +10,15 @@ if ($funcao == 'grava') {
 }
 
 
-function grava(){
-      //Cadastro
-      $codigo = (int) $_POST["codigo"];
-      $nomeUsuario = formatarString($_POST["usuario"]);
-      $senha = formatarString($_POST["usuario"]);
-      $ativo = 1;
+function grava()
+{
+    //Cadastro
+    $codigo = (int) $_POST["codigo"];
+    $nomeUsuario = formatarString($_POST["username"]);
+    $senha = formatarString($_POST["password"]);
+    $ativo = 1;
 
-      $sql = "Ntl.centroCusto_Atualiza
+      $sql = "dbo.usuario_Atualiza
       $codigo,
       $nomeUsuario,
       $senha,
@@ -25,25 +27,30 @@ function grava(){
 
 
 
+    $reposit = new reposit();
+    $result = $reposit->Execprocedure($sql);
+
+    if($result > 0) {
+        
+    }
 }
 
 
 function formatarString($value)
-    {
-        $aux = $value;
-        if (!$aux) {
-            return 'NULL';
-        }
-        $aux = "'".trim($aux)."'";
-        return $aux;
+{
+    $aux = $value;
+    if (!$aux) {
+        return 'NULL';
     }
+    $aux = "'" . trim($aux) . "'";
+    return $aux;
+}
 
-    $reposit = new reposit();
-    $result = $reposit->Execprocedure($sql);
+$reposit = new reposit();
+$result = $reposit->Execprocedure($sql);
 
-    if ($result > 0) {
-        $codigo = $result[0]['codigo'];
-    }
-    return;
-    
-?>
+if ($result > 0) {
+    $codigo = $result[0]['codigo'];
+}
+return;
+

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Login</title>
+    <title>Registrar-se</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -51,15 +51,15 @@
                             <h4>Registrar-se</h4>
                         </div>
                         <div class="card-body">
-                            <form action="javascript:gravar()">
+                            <form id="cadastro" action="javascript:gravar()">
                                 <div class="form-group">
-                                    <label for="username">Usuário</label>
+                                    <label for="usuario">Usuário</label>
                                     <input id="codigo" name="codigo" type="number" value="" hidden>
-                                    <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
+                                    <input type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Senha</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                                    <label for="senha">Senha</label>
+                                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
                                 </div>
                                 <p><a style="font-size: 14px; display: flex; justify-content: end;" href="login.php">Logar</a></p>
                                 <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Registrar</button>
@@ -73,27 +73,40 @@
     </main>
     <footer></footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <script src="/js/business_registrar.js"></script>
+    <script src="js/business_registrar.js"></script>
 
     <script language="JavaScript" type="text/javascript">
         $(document).ready(function() {
 
-        $("#btnRegister").on("click", function() {
+            $("#btnRegister").on("click", function() {
                 gravar();
-        });
+            });
 
-    function gravar() {
-        let form = $("#formCentroCusto")[0];
-        let formData = new FormData(form);
+            
+            
+        });
+        function gravar() {
+            let form = $("#cadastro")[0];
+            let formData = new FormData(form);
+            console.log(formdata)
             gravaUsuario(formData, function(data) {
-            //Verifica se a função de gravar os campos foi executada corretamente
-            smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
-        });
-}
+                //Verifica se a função de gravar os campos foi executada corretamente
+                smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
+            });
+        }
 
-        });
-    </script>
+        function gravaUsuario(formData, callback) {
+            formData.append("funcao", "grava")
+            $.ajax({
+                url: 'sql/sqlscope_registrar.php',
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: results => callback(results)
+            })
+        }
+        </script>
 
 </body>
 
