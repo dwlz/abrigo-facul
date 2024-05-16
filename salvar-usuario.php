@@ -4,8 +4,11 @@
     if($acao == 'salvar'){
         $nome = $_POST["nome"];
         $senha = md5($_POST["senha"]);
+        $data_nascimento = $_POST["dataNascimento"];
+        $email = $_POST["email"];
+        $telefone = $_POST["telefone"];
 
-        $sql = "INSERT INTO usuario (nome, senha) values ('{$nome}', '{$senha}')";
+        $sql = "INSERT INTO usuarios (nome, senha, telefone, email, data_nascimento) values ('{$nome}', '{$senha}', '{$telefone}', '{$email}', '{$data_nascimento}')";
         $res = $conn->query($sql);
         if($res == false) {
             print "<script>alert('Não foi possivel cadastrar!');</script>";
@@ -24,10 +27,17 @@
         $codigo = $_REQUEST['codigo'];
         $nome = $_POST["nome"];
         $senha = md5($_POST["senha"]);
+        $dataNascimento = $_POST["dataNascimento"];
+        $email = $_POST["email"];
+        $telefone = $_POST["telefone"];
 
-        $sql = "UPDATE usuario SET 
+        $sql = "UPDATE usuarios SET 
         nome='{$nome}', 
-        senha='{$senha}' WHERE codigo = $codigo";
+        senha='{$senha}',
+        telefone='{$telefone}', 
+        email='{$email}', 
+        data_nascimento='{$dataNascimento}' 
+        WHERE codigo = $codigo";
         $res = $conn->query($sql);
         if($res == false) {
             print "<script>alert('Não foi possivel editar!');</script>";
@@ -50,28 +60,4 @@
             print "<script>location.href='registrar.php?page=listar';</script>";
         }
     }
-  /*   switch ($_REQUEST['acao']) {
-        case 'salvar':
-            $nome = $_POST["nome"];
-            $senha = $_POST["senha"];
-
-            $sql = "INSERT INTO usuario (nome, senha) values ('{$nome}', '{$senha}')";
-            $res = $conn->query($sql);
-            if($res < 0) {
-                print 'Erro ao gravar';
-            }
-
-            break;
-
-        case 'editar':
-            # code...
-            break;
-
-        case 'excluir':
-            # code...
-            break;
-        
-      
-    } */
-
 ?>

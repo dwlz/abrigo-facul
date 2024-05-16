@@ -1,7 +1,7 @@
 <h1 class="mb-5">Listagem de Usuarios</h1>
 
 <?php 
-    $sql = "SELECT * FROM usuario";
+    $sql = "SELECT * FROM usuarios";
 
     $res = $conn->query($sql);
 
@@ -21,7 +21,7 @@
             print "<td>".$row->codigo."</td>";  
             print "<td>".$row->nome."</td>";  
             print "<td>".$row->senha."</td>";  
-            print "<td> 
+            print "<td class='text-center'> 
                     <button class='btn btn-success' onclick=\"location.href='?page=editar&id=".$row->codigo."';\">Editar</button>
                     <button class='btn btn-danger'onclick=\"if(confirm('Tem certeza que deseja excluir?')){location.href='?page=salvar&acao=excluir&codigo=".$row->codigo."';}else{false;}\">Excluir</button>
                    </td>";  

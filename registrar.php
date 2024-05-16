@@ -34,8 +34,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Canil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="adote.php">Adote</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdote" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Adote
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownAdote">
+                                <a class="dropdown-item" href="adote.php">Opção 1</a>
+                                <a class="dropdown-item" href="subpagina.php">Opção 2</a>
+                                <!-- Adicione mais opções aqui se necessário -->
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
@@ -45,6 +52,8 @@
                         </li>
                     </ul>
                 </div>
+
+
             </div>
         </nav>
     </header>
@@ -59,58 +68,34 @@
                 case "registrar":
                     include("novo-usuario.php");
                     break;
-                    case "salvar":
-                        include("salvar-usuario.php");
-                        break;
-                    case "listar":
-                        include("listar-usuario.php");
-                        break;
-                    case "editar":
-                        include("editar-usuario.php");
-                        break;
+                case "salvar":
+                    include("salvar-usuario.php");
+                    break;
+                case "listar":
+                    include("listar-usuario.php");
+                    break;
+                case "editar":
+                    include("editar-usuario.php");
+                    break;
                 default:
             }
-                    
+
             ?>
-            
+
 
     </main>
     <footer></footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/business_registrar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script language="JavaScript" type="text/javascript">
         $(document).ready(function() {
 
-            $("#btnRegister").on("click", function() {
-                gravar();
-            });
-
-
+            // Aplica a máscara ao campo de telefone
+            $('#telefone').mask('(00) 0000-00009');
 
         });
 
-/*         function gravar() {
-            let form = $("#cadastro")[0];
-            let formData = new FormData(form);
-            console.log(formdata)
-            gravaUsuario(formData, function(data) {
-                //Verifica se a função de gravar os campos foi executada corretamente
-                smartAlert("Sucesso", "Operação realizada com sucesso!", "success");
-            });
-        }
-
-        function gravaUsuario(formData, callback) {
-            formData.append("funcao", "grava")
-            $.ajax({
-                url: 'sql/sqlscope_registrar.php',
-                type: 'post',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: results => callback(results)
-            })
-        } */
     </script>
 
 </body>
