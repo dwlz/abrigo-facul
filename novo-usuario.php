@@ -29,5 +29,3 @@
     </div>
 
 </form>
-
-</script>

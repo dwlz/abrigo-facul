@@ -237,12 +237,14 @@ nav {
 .content-box {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
     padding: 50px;
     font-size: 26px;
     color: white;
     font-weight: 500;
     height: 330px;
+}
+
+.link {
+    flex-direction: column;
 }
 
