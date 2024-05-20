@@ -3,7 +3,43 @@ include("config.php");
 
 $acao = $_REQUEST['acao'];
 
+
+
+if ($acao == 'logar') {
+    session_start();
+
+    $email = $_POST['email'];
+
+    if (!empty($email) && !empty($_POST['senha'])) {
+
+        $senha = md5($_POST['senha']);
+        $sql = "SELECT  codigo, email, senha FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+        $res = $conn->query($sql);
+        $row = $res->fetch_object();
+        $codigoUsuario = (int) $row->codigo;
+
+        if (mysqli_num_rows($res) < 1) {
+            echo '<script>alert("Email ou Senha Invalidos!");</script>';
+            header('Location: login.php');
+        } else {
+            $sqlPermissao = "SELECT funcionalidade_codigo FROM usuariopermissoes WHERE usuario_codigo = $codigoUsuario";
+            $res = $conn->query($sqlPermissao);
+            $row = $res->fetch_object();
+            $permissaoCodigo = (int) $row->funcionalidade_codigo;
+
+
+            $_SESSION['usuarioCodigo'] = $codigoUsuario;
+            $_SESSION['permissao'] = $permissaoCodigo;
+            header('Location: index.php');
+        }
+    } else {
+        echo '<script>alert("Preencha os dados para logar!"); window.location.href = "registrar.php?page=logar";</script>';
+        header('Location: login.php');
+    }
+}
+
 if ($acao == 'salvar') {
+
     $nome = $_POST["nome"];
     $senha = md5($_POST["senha"]);
     $data_nascimento = $_POST["dataNascimento"];
@@ -12,12 +48,23 @@ if ($acao == 'salvar') {
 
     $sql = "INSERT INTO usuarios (nome, senha, telefone, email, data_nascimento) values ('{$nome}', '{$senha}', '{$telefone}', '{$email}', '{$data_nascimento}')";
     $res = $conn->query($sql);
+
     if ($res == false) {
         print "<script>alert('Não foi possivel cadastrar!');</script>";
-        print "<script>location.href='registrar.php?page=listar';</script>";
+        print "<script>location.href='registrar-usuario.php';</script>";
     } else {
+        $sqlUsuarioCodigo = "SELECT codigo FROM usuarios WHERE nome = '$nome'";
+        $res = $conn->query($sqlUsuarioCodigo);
+        $row = $res->fetch_object();
+
+        $codigoUsuario = $row->codigo;
+
+
+        $sql = "INSERT INTO usuariopermissoes (usuario_codigo, funcionalidade_codigo) VALUES ({$codigoUsuario}, 2)";
+        $res = $conn->query($sql);
+
         print "<script>alert('Cadastro concluido com Sucesso!');</script>";
-        print "<script>location.href='registrar.php?page=listar';</script>";
+        print "<script>location.href='registrar.php?page=logar';</script>";
     }
 }
 
@@ -65,10 +112,10 @@ if ($acao == 'editar') {
     $res = $conn->query($sql);
     if ($res == false) {
         print "<script>alert('Não foi possivel editar!');</script>";
-        print "<script>location.href='registrar.php?page=listar';</script>";
+        print "<script>location.href='index.php';</script>";
     } else {
         print "<script>alert('Editado com Sucesso!');</script>";
-        print "<script>location.href='registrar.php?page=listar';</script>";
+        print "<script>location.href='index.php';</script>";
     }
 }
 if ($acao == 'excluir') {
@@ -184,10 +231,10 @@ if ($acao == 'recuperaUsuario') {
     return;
 }
 
-if($acao == 'adotar') {
+if ($acao == 'adotar') {
 
     $pet = $_POST['pet'];
-    $usuario = $_POST['usuario'];
+    $usuario = $_SESSION['usuarioCodigo'];
 
     $sql = "INSERT INTO petVinculo (usuario_codigo, pet_codigo) VALUES ('{$usuario}', {$pet})";
     $res = $conn->query($sql);
@@ -195,17 +242,17 @@ if($acao == 'adotar') {
     if ($res == false) {
         print "<script>alert('Não foi possível Adotar!');</script>";
         print "<script>location.href='registrar.php?page=listarPet';</script>";
-    }
-
-    $sql = "UPDATE pet SET ativo = 0 WHERE codigo = $pet";
-    $res = $conn->query($sql);
-
-    if ($res == false) {
-        print "<script>alert('Não foi possível Adotar!');</script>";
-        print "<script>location.href='registrar.php?page=listarPet';</script>";
     } else {
-        print "<script>alert('Adotado com Sucesso!');</script>";
-        print "<script>location.href='registrar.php?page=listar';</script>";
+        $sql = "UPDATE pet SET ativo = 0 WHERE codigo = $pet";
+        $res = $conn->query($sql);
+    
+        if ($res == false) {
+            print "<script>alert('Não foi possível Adotar!');</script>";
+            print "<script>location.href='registrar.php?page=listarPet';</script>";
+        } else {
+            print "<script>alert('Adotado com Sucesso!');</script>";
+            print "<script>location.href='registrar.php?page=listarPet';</script>";
+        }
     }
 
 }

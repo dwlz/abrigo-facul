@@ -1,11 +1,13 @@
 <?php
-session_start();
 include("config.php");
+session_start();
+/* if($_SESSION['usuarioCodigo'] == '') {
+        header('Location: registrar-usuario.php');
 
-/* if ($_SESSION['usuarioCodigo'] == '') {
-    header('Location: login.php');
-} */
+    } else {
 
+        
+    } */
 $logado = $_SESSION['usuarioCodigo'];
 $permissao = $_SESSION['permissao'];
 
@@ -18,8 +20,6 @@ if ($permissao == 1) {
 
 $logado ? $verBotao = "none" : $verBotao = "";
 
-$logado ? $btnDados = '' : $btnDados = "none";
-
 $logado ? $btnSair = "" : $btnSair = "none";
 
 if ($logado) {
@@ -29,6 +29,9 @@ if ($logado) {
 
     $nomeLogado = $row->nome;
 }
+
+
+
 
 ?>
 
@@ -50,7 +53,7 @@ if ($logado) {
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-            <div class="container">
+        <div class="container">
                 <!-- Logo ou Nome da Marca -->
                 <a class="navbar-brand" href="#"><img class="logo" src="img/cachorro logo.png" alt="cachorro logo"></a>
                 <!-- Botão de Colapso (para dispositivos móveis) -->
@@ -76,7 +79,6 @@ if ($logado) {
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownAdote">
                                 <a class="dropdown-item" href="registrar.php?page=registrarpet" style="display: <?php echo $btnVoluntario ?>;">Cadastrar</a>
-                                <a class="dropdown-item" href="registrar.php?page=meusPet" style="display: <?php echo $btnSair ?>;">Meus Pets</a>
                                 <a class="dropdown-item" href="registrar.php?page=listarPet">Listagem</a>
                                 <!-- Adicione mais opções aqui se necessário -->
                             </div>
@@ -84,20 +86,16 @@ if ($logado) {
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="registrar.php?page=logar" style="display:<?php echo $verBotao ?>;">Login</a>
+                            <a class="nav-link" href="login.php" style="display:<?php echo $verBotao ?>;">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="registrar-usuario.php" style="display:<?php echo $verBotao ?>;">Cadastre-se</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" style="display:<?php echo $btnDados ?>;" href="#" id="navbarDropdownAdote" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php echo 'Olá, ' . $nomeLogado  ?>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNome">
-                                <a class="dropdown-item" href="<?php echo 'registrar.php?page=editar&id=' . $logado . '' ?>">Editar Dados</a>
-                                <a class="dropdown-item" href="sair.php" style="display:<?php echo $btnSair ?>;">Sair</a>
-                                <!-- Adicione mais opções aqui se necessário -->
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo 'registrar.php?page=editar&id='. $logado .'' ?>" style="display:<?php echo $btnSair ?>;"><?php echo 'Olá, ' . $nomeLogado . '' ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sair.php" style="display:<?php echo $btnSair ?>;">Sair</a>
                         </li>
                     </ul>
                 </div>
@@ -107,49 +105,40 @@ if ($logado) {
     </header>
     <main>
         <div class="container">
-            <?php
-            include("config.php");
-            switch (@$_REQUEST["page"]) {
-                case "logar":
-                    include("login.php");
-                    break;
-                case "registrarpet":
-                    include("registrar-pet.php");
-                    break;
-                case "adotar":
-                    include("adotar.php");
-                    break;
-                case "salvar":
-                    include("sqlScope.php");
-                    break;
-                case "listar":
-                    include("listar-usuario.php");
-                    break;
-                case "listarPet":
-                    include("listar-pet.php");
-                    break;
-                case "editar":
-                    include("editar-usuario.php");
-                    break;
-                case "editarPet":
-                    include("editar-pet.php");
-                    break;
-                case "visualizarPet":
-                    include("visualizar-pet.php");
-                    break;
-                case "meusPet":
-                    include("meus-pet.php");
-                    break;
-                case "sqlScope":
-                    include("sqlScope.php");
-                    break;
-                default:
-                    echo '<h1>Página não Encontrada!</h1>';
-            }
-            ?>
+            <h1 class="center col-auto mb-4">Novo Usuário</h1>
+
+            <form class="center col-auto mb-4" action="registrar.php?page=salvar" method="POST">
+                <input type="hidden" name="acao" value="salvar">
+                <div class="row">
+                    <div class="col col-4 col-auto mb-3">
+                        <label for="Nome">Nome Completo</label>
+                        <input type="text" name="nome" class="form-control" required>
+                    </div>
+                    <div class="col col-4 col-auto mb-3">
+                        <label for="dataNascimento">Data de Nascimento</label>
+                        <input id="dataNascimento" type="date" name="dataNascimento" class="form-control text-center" required>
+                    </div>
+                    <div class="col col-4 col-auto mb-3">
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone" type="text" name="telefone" class="form-control" required>
+                    </div>
+                    <div class="col col-4 col-auto mb-3">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="col col-3 col-auto mb-3">
+                        <label for="senha">Senha</label>
+                        <input id="senha" type="password" name="senha" class="form-control" required>
+                    </div>
+                    <div class="col col-12 text-left">
+                        <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </main>
     <footer></footer>
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap JavaScript -->
@@ -168,3 +157,4 @@ if ($logado) {
 </body>
 
 </html>
+

@@ -1,3 +1,41 @@
+<?php
+include("config.php");
+session_start();
+/* if($_SESSION['usuarioCodigo'] == '') {
+        header('Location: registrar-usuario.php');
+
+    } else {
+
+        
+    } */
+$logado = $_SESSION['usuarioCodigo'];
+$permissao = $_SESSION['permissao'];
+
+
+if ($permissao == 1) {
+    $btnVoluntario = '';
+} else {
+    $btnVoluntario = "none";
+}
+
+$logado ? $verBotao = "none" : $verBotao = "";
+
+$logado ? $btnSair = "" : $btnSair = "none";
+
+if ($logado) {
+    $sql = "SELECT nome FROM usuarios WHERE codigo = $logado";
+    $res = $conn->query($sql);
+    $row = $res->fetch_object();
+
+    $nomeLogado = $row->nome;
+}
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -39,7 +77,8 @@
                                 Animais
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownAdote">
-                                <a class="dropdown-item" href="registrar.php?page=registrarpet">Cadastrar</a>
+                                <a class="dropdown-item" href="registrar.php?page=registrarpet" style="display: <?php echo $btnVoluntario ?>;">Cadastrar</a>
+                                <a class="dropdown-item" href="registrar.php?page=meusPet" style="display: <?php echo $btnSair ?>;">Meus Pets</a>
                                 <a class="dropdown-item" href="registrar.php?page=listarPet">Listagem</a>
                                 <!-- Adicione mais opções aqui se necessário -->
                             </div>
@@ -47,11 +86,22 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="registrar.php?page=logar">Login</a>
+                            <a class="nav-link" href="login.php" style="display:<?php echo $verBotao ?>;">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="registrar.php?page=registrar">Cadastre-se</a>
+                            <a class="nav-link" href="registrar-usuario.php" style="display:<?php echo $verBotao ?>;">Cadastre-se</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a style="display:<?php echo $btnSair ?>;" class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdote" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo 'Olá, ' . $nomeLogado  ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNome">
+                                <a class="dropdown-item" href="<?php echo 'registrar.php?page=editar&id=' . $logado . '' ?>">Editar Dados</a>
+                                <a class="dropdown-item" href="sair.php" style="display:<?php echo $btnSair ?>;">Sair</a>
+                                <!-- Adicione mais opções aqui se necessário -->
+                            </div>
+                        </li>
+                        
                     </ul>
                 </div>
 
@@ -92,9 +142,9 @@
             </div>
         </div>
         <section>
-            <h1 class="titulo">Sobre</h1>
+            <h1 id="sobre" class="titulo">Sobre</h1>
             <hr>
-            <div id="sobre" class="containers">
+            <div class="containers">
                 <div class="box-text">
                     <p class="titulo-box">Adote</p>
                     <div class="box-content">
@@ -128,7 +178,7 @@
                         animal de estimação, você não apenas ganha um amigo leal, mas também salva uma vida.
                         Milhares de pets esperam ansiosamente por
                         um lar amoroso. Seja a mudança que eles precisam. Adote hoje e faça a diferença!</p>
-                    <button id="btnAdotar2" class="button" style="width: 50%; margin: 0 auto;">Clique aqui</button>
+                    <button id="btnAdotar" class="button" style="width: 50%; margin: 0 auto;">Clique aqui</button>
                 </div>
             </div>
         </section>

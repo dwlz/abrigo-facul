@@ -5,7 +5,7 @@ session_start();
 
 if (!isset($_SESSION['usuarioCodigo']) == true) {
     unset($_SESSION['usuaridoCodigo']);
-    header('Location: login.php');
+    header('Location: registrar.php?page=logar');
 } else {
 
     $logado = $_SESSION['usuarioCodigo'];
@@ -33,10 +33,13 @@ if (!isset($_SESSION['usuarioCodigo']) == true) {
 
 ?>
 
-<h1 class="mb-5">Listagem de Pet</h1>
+<h1 class="mb-5">Seus Pets</h1>
 
 <?php
-$sql = "SELECT * FROM pet";
+$sql = "SELECT P.nomePet, P.codigo, P.tipoAnimal, P.sexo, P.vacinado, P.castrado, P.ativo FROM pet P
+INNER JOIN petVinculo PV ON PV.pet_codigo = P.codigo
+INNER JOIN usuarios U ON U.codigo = PV.usuario_codigo
+WHERE PV.usuario_codigo = $logado";
 
 $res = $conn->query($sql);
 
@@ -47,22 +50,22 @@ if ($qtd > 0) {
     print
         '<thead>
             <th class="text-center">Codigo</th>
-            <th class="text-center">Nome</th>
+            <th class="text-left">Nome</th>
             <th class="text-center">Tipo do Animal</th>
             <th class="text-center">Sexo</th>
             <th class="text-center">Vacinado</th>
-            <th class="text-center">Disponível</th>
+            <th class="text-center">Castrado</th>
             <th class="text-center">Ações</th>
         </thead>';
     while ($row = $res->fetch_object()) {
 
-        $vacinado = $row->vacinado;
+        $vacinado = (bool) $row->vacinado;
+        $castrado = (bool) $row->castrado;
         $ativo = (bool) $row->ativo;
 
         $vacinado ? $vacinado = "Sim" : $vacinado = "Não";
+        $castrado ? $castrado = "Sim" : $castrado = "Não";
 
-        $tipoAnimal;
-        $sexo;
 
         if ($row->tipoAnimal == 1) {
             $tipoAnimal = 'Cachorro';
@@ -83,11 +86,11 @@ if ($qtd > 0) {
         }
         print '<tr>';
         print "<td class='text-center' style='width:10%;'>" . $row->codigo . "</td>";
-        print "<td style='width:10%;'>" . $row->nomePet . "</td>";
+        print "<td style='width:20%;'>" . $row->nomePet . "</td>";
         print "<td class='text-center'>" . $tipoAnimal . "</td>";
         print "<td class='text-center'>" . $sexo . "</td>";
         print "<td class='text-center'>" . $vacinado . "</td>";
-        print $ativo;
+        print "<td class='text-center'>" . $castrado . "</td>";
         print "<td class='text-center'> 
                     <button class='btn btn-success' style='display: $btnVoluntario;' onclick=\"location.href='?page=editarPet&id=" . $row->codigo . "';\">Editar</button>
                     <button class='btn btn-info'onclick=\"location.href='?page=visualizarPet&id=" . $row->codigo . "'\">Visualizar</button>

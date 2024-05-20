@@ -67,9 +67,14 @@ $row = $res->fetch_object();
             <label for="comportamento">Comportamento</label>
             <input type="text" name="comportamento" id="comportamento" class="form-control" disabled>
         </div>
-        
     </div>
     <hr>
+    <div class="row">
+        <div class="col col-12 text-left">
+            <button id="btnAdotar" type="button" class="btn btn-primary btn-lg">Adotar</button>
+        </div>
+
+    </div>
 
 
 
@@ -83,6 +88,10 @@ $row = $res->fetch_object();
 
 <script>
     $(document).ready(function() {
+        $("#btnAdotar").on('click', function() {
+                window.location.href = 'registrar.php?page=adotar';
+            });
+
         carregaPagina();
     });
 
@@ -122,7 +131,6 @@ $row = $res->fetch_object();
             codigo: codigo
         },
         success: function(response) {
-            console.log(response);
             callback(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {

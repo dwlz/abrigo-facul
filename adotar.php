@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+
+if ($_SESSION['usuarioCodigo'] == '') {
+    print "<script>location.href='login.php';</script>";
+
+} else {
+
+    $logado = $_SESSION['usuarioCodigo'];
+    $verBotao;
+    
+    $logado ? $verBotao = "none" : $verBotao = "";
+
+}
+
+
+?>
+
+
+
 <h1 class="center col-auto mb-4">Adote seu Pet!</h1>
 
 <form class="center col-auto mb-4" action="?page=salvar" method="POST">
@@ -5,9 +26,12 @@
     <div class="row">
         <div class="col col-4 col-auto mb-3">
             <label for="nome">Nome</label>
-            <select class="form-control" name="usuario" id="usuario" required>
+            <select class="form-control" name="usuario" id="usuario" required disabled>
                 <?php
-                $sql = "SELECT * FROM usuarios";
+                session_start();
+                $logado = $_SESSION['usuarioCodigo'];
+                $sql = "SELECT nome FROM usuarios WHERE codigo = $logado";
+
                 $res = $conn->query($sql);
 
                 $qtd = $res->num_rows;
@@ -15,7 +39,6 @@
                 $codigo = $row->codigo;
 
                 if ($qtd > 0) {
-                    echo '<option></option>';
                     while ($row = $res->fetch_object()) {
                         echo '<option value =' . $row->codigo . '>' . $row->nome . '</option>';
                     }
@@ -47,7 +70,7 @@
 
 
                 ?>
-            </select>
+            </select><i></i>
         </div>
     </div>
     <hr hidden>
@@ -113,9 +136,6 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 <script>
@@ -123,8 +143,6 @@
 
         $("#pet").on("change", () => recuperandoPet());
 
-
-        //carregaPagina();
     });
 
 
@@ -151,30 +169,6 @@
         })
     }
 
-
-    function carregaPagina() {
-        var urlx = window.document.URL.toString();
-        var params = urlx.split("id");
-        if (params.length === 2) {
-            var id = params[1];
-            var idx = id.split("=");
-            var idd = idx[1];
-            if (idd !== "") {
-                recuperaPet(idd, function(data) {
-                    $("#codigo").val(data.codigo)
-                    $("#nomePet").val(data.nomePet);
-                    $("#tipoAnimal").val(data.tipoAnimal);
-                    $("#dataNascimento").val(data.data_nascimento);
-                    $("#sexo").val(data.sexo);
-                    $("#porte").val(data.porte);
-                    $("#castrado").val(data.castrado);
-                    $("#vacinado").val(data.vacinado);
-                    $("#raca").val(data.raca);
-                    $("#comportamento").val(data.comportamento);
-                });
-            }
-        }
-    }
 
     function recuperaPet(codigo, callback) {
         $.ajax({

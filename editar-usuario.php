@@ -16,15 +16,15 @@ $row = $res->fetch_object();
     <div class="row">
         <div class="col col-4 col-auto mb-3">
             <label for="Nome">Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control">
+            <input type="text" name="nome" id="nome" class="form-control" required>
         </div>
         <div class="col col-4 col-auto mb-3">
             <label for="dataNascimento">Data de Nascimento</label>
-            <input id="dataNascimento" type="date" name="dataNascimento" class="form-control text-center">
+            <input id="dataNascimento" type="date" name="dataNascimento" class="form-control text-center" required>
         </div>
         <div class="col col-4 col-auto mb-3">
             <label for="telefone">Telefone</label>
-            <input id="telefone" type="text" name="telefone" class="form-control text-center">
+            <input id="telefone" type="text" name="telefone" class="form-control text-center" required>
         </div>
         <div class="col col-4 col-auto mb-3">
             <label for="senha">Senha</label>
@@ -32,7 +32,7 @@ $row = $res->fetch_object();
         </div>
         <div class="col col-4 col-auto mb-3">
             <label for="email">E-mail</label>
-            <input id="email" type="email" name="email" class="form-control">
+            <input id="email" type="email" name="email" class="form-control" required>
         </div>
         <div class="col col-12 text-left">
             <button type="submit" class="btn btn-primary btn-lg">Editar</button>
