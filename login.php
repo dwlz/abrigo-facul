@@ -49,7 +49,7 @@ if ($logado) {
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container">
                 <!-- Logo ou Nome da Marca -->
-                <a class="navbar-brand" href="#"><img class="logo" src="img/cachorro logo.png" alt="cachorro logo"></a>
+                <a class="navbar-brand" href="index.php"><img class="logo" src="img/cachorro logo.png" alt="cachorro logo"></a>
                 <!-- Botão de Colapso (para dispositivos móveis) -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -33,7 +33,7 @@ if ($acao == 'logar') {
             header('Location: index.php');
         }
     } else {
-        echo '<script>alert("Preencha os dados para logar!"); window.location.href = "registrar.php?page=logar";</script>';
+        echo '<script>alert("Preencha os dados para logar!"); window.location.href = "login.php";</script>';
         header('Location: login.php');
     }
 }
@@ -64,7 +64,7 @@ if ($acao == 'salvar') {
         $res = $conn->query($sql);
 
         print "<script>alert('Cadastro concluido com Sucesso!');</script>";
-        print "<script>location.href='registrar.php?page=logar';</script>";
+        print "<script>location.href='login.php';</script>";
     }
 }
 
